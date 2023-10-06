@@ -1,0 +1,88 @@
+.footer {
+  background-color: #1e1e1e;
+  padding: 5rem 3rem;
+
+  &-contact {
+    display: flex;
+    justify-content: space-between;
+    color: #4a4a4a;
+    padding-bottom: 3rem;
+    h5 {
+      font-size: 1.4rem;
+      padding: 1rem 0;
+    }
+    h4 {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      color: #fff;
+    }
+
+    .social {
+      &-list {
+        display: flex;
+        gap: 2rem;
+      }
+
+      &-cover {
+        width: 24px;
+        height: 24px;
+        & img {
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+
+    li {
+        margin-bottom: 5px;
+      a {
+        color: #4a4a4a;
+        &:hover {
+          color: rgba($color: #fff, $alpha: 0.7);
+        }
+      }
+    }
+
+    .email {
+      &-form {
+        background-color: #343434;
+      }
+
+      &-input {
+        background-color: #343434;
+        outline: none;
+        border: none;
+        padding: 1rem 2rem;
+        color: #fff;
+      }
+
+      &-btn {
+        display: inline-block;
+        height: 4rem;
+        padding: 0 2rem;
+        text-transform: uppercase;
+        background-color: #666666;
+        color: #fff;
+      }
+    }
+  }
+  .btn-footer-link{
+    overflow: hidden;
+  }
+
+  &-icon{
+    display: none;
+  }
+
+  &-copyright{
+    border-top: 1px solid #fff;
+    padding-top: 3rem;
+    color: #fff;
+    font-size: 2.4rem;
+    text-align: center;
+    & a{
+        color: #fff;
+    }
+  }
+}
