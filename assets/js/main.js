@@ -129,13 +129,16 @@ orderBtn && orderBtn.addEventListener("click", function (e) {
     e.preventDefault()
     const product = e.currentTarget.closest(".detail-content")
     const productName = product.querySelector(".detail-name").innerText.toLowerCase()
-    let productQuantity = 1;
+    let productQuantity = +product.querySelector("#detail-quantity").innerText.toLowerCase();
+
     let count = 0;
+    let total = 0;
+
 
     const index = productList.findIndex((item) => item["name"].toLowerCase() === productName);
     if (index > -1) {
         //                update quantity of the existing object in local storage
-        productQuantity = Number(productList[index]["quantity"]) + 1;
+        productQuantity += Number(productList[index]["quantity"]);
         productList[index]["quantity"] = productQuantity;
         localStorage && localStorage.setItem("productList", JSON.stringify(productList))
         topCartList.innerHTML = "";
@@ -158,9 +161,15 @@ orderBtn && orderBtn.addEventListener("click", function (e) {
         localStorage && localStorage.setItem("productList", JSON.stringify(productList))
     }
 
-    productList.forEach(e => { count += Number(e["quantity"]) })
+
+    productList.forEach(e => {
+        count += Number(e["quantity"])
+        total += Number(e["quantity"]) * Number(e['price'])
+    })
 
     topCartQuantity.innerText = count;
+    topCartTotal.textContent = formatter.format(total)
+
     if (count > 9) {
         topCartCount.innerText = "9+";
     }
