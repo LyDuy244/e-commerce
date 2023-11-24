@@ -5,7 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <!--   SEO   -->
     <link rel="shortcut icon" href="https://4men.com.vn/favicon.ico" type="image/x-icon">
+    <meta name="title" content="4MEN®" />
+    <meta name="description" content="Thời trang nam hàng hiệu, cao cấp - Thương hiệu 4MEN®" />
+    <meta property="og:locale" content="vi" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="4MEN®" />
+    <meta property="og:description" content="Thời trang nam hàng hiệu, cao cấp - Thương hiệu 4MEN®" />
+    <meta property="og:url" content="https://lyduy244.github.io/e-commerce/" />
+    <meta property="og:site_name" content="4MEN®" />
+    <meta property="og:image"
+        content="https://external.xx.fbcdn.net/emg1/v/t13/4277671781801202005?url=https%3A%2F%2F4men.com.vn%2F4men.jpg%3Fv%3D2&fb_obo=1&utld=com.vn&stp=c0.5000x0.5000f_dst-emg0_p150x78_q75&ccb=13-1&oh=06_AbHZSg3uxNdiPaFJukLpRXdqW5UQfM39I2P9yMSDIhFxsA&oe=6561705C&_nc_sid=e9c42e" />
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
@@ -124,8 +135,7 @@
 
                 <input type="text" placeholder="Tìm kiếm" class="top-search-input">
             </div>
-
-            <div class="top-cart">
+            <div href="./cart.html" class="top-cart">
                 <div class="top-cart-icon">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <span class="top-cart-count">0</span>
@@ -228,20 +238,26 @@
                         </a>
                     </li>
                 </ul>
-                <div class="img-main-list ">
+                <div class="img-main-list" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <div class="img-main-wrapper">
                         <img src="./assets/images/product/somi-ligen/black/somi-ligen-black-1.jpg" alt="">
-                        <div class="img-main-cover"></div>
                     </div>
                     <div class="img-main-wrapper">
                         <img src="./assets/images/product/somi-ligen/black/somi-ligen-black-2.jpg" alt="">
-                        <div class="img-main-cover"></div>
                     </div>
                     <div class="img-main-wrapper">
                         <img src="./assets/images/product/somi-ligen/black/somi-ligen-black-3.jpg" alt="">
-                        <div class="img-main-cover"></div>
                     </div>
-    
+                    <div class="img-main-wrapper">
+                        <img src="./assets/images/product/somi-ligen/black/somi-ligen-black-4.jpg" alt="">
+                    </div>
+                    <div class="img-main-wrapper">
+                        <img src="./assets/images/product/somi-ligen/black/somi-ligen-black-5.jpg" alt="">
+                    </div>
+                    <div class="img-main-wrapper">
+                        <img src="./assets/images/product/somi-ligen/black/somi-ligen-black-6.jpg" alt="">
+                    </div>
+
                 </div>
             </div>
             <div class="detail-content">
@@ -740,11 +756,97 @@
         </div>
     </div>
 
+
+    <!-- Modal -->
+    <div class="modal fade modal-container" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <i class="fa fa-angle-left modal-prev"></i>
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <img src="./assets/images/product/somi-ligen/black/somi-ligen-black-1.jpg" alt="img-main"
+                    class="modal-img">
+            </div>
+        </div>
+        <i class="fa fa-angle-right modal-next"></i>
+    </div>
+
     <script>
         const btnListView = document.querySelector(".voucher-list-view")
         const voucherDetail = document.querySelector(".voucher-detail")
         const voucherIcon = document.querySelector(".voucher-icon")
         const dropdown = document.querySelector(".dropdown")
+        const modalImg = document.querySelector(".modal-img")
+        const modalDialog = document.querySelector(".modal-dialog")
+        const modalContent = document.querySelector(".modal-content")
+        const imageList = document.querySelectorAll(".img-main-wrapper img")
+        const btnModalPrev = document.querySelector(".modal-prev")
+        const btnModalNext = document.querySelector(".modal-next")
+        let indexImgList = 0;
+        let isPressImage = false
+        let isZoom = false
+
+        btnModalPrev.addEventListener("click", function (e) {
+            indexImgList--;
+            if (indexImgList < 0) {
+                indexImgList = imageList.length - 1;
+            }
+
+            modalImg.src = imageList[indexImgList].src;
+        })
+
+        btnModalNext.addEventListener("click", function (e) {
+            indexImgList++;
+            if (indexImgList === imageList.length) {
+                indexImgList = 0;
+            }
+
+            modalImg.src = imageList[indexImgList].src;
+        })
+
+        modalImg.addEventListener("click", function (e) {
+            if (!isZoom) {
+                modalContent.classList.add("zoom-in")
+                e.target.classList.add("zoom-in")
+                isZoom = true;
+            } else {
+                modalContent.classList.remove("zoom-in")
+                e.target.classList.remove("zoom-in")
+                isZoom = false;
+                modalContent.style = ""
+            }
+
+        })
+
+        // modalImg.addEventListener("dragstart", function (e) {
+        //     e.preventDefault()
+        // })
+
+
+        // modalContent.addEventListener("mousedown", function (e) {
+        //     isPressImage = true;
+        //     modalImg.style.cursor = "grabbing"
+        // })
+
+        // modalContent.addEventListener("mouseup", function (e) {
+        //     isPressImage = false;
+        //     modalImg.style.cursor = "grab"
+        // })
+
+        modalContent.addEventListener("mousemove", function (e) {
+            if (isZoom && modalContent.matches(".zoom-in")) {
+                const pY = e.pageY;
+                const imageHeight = modalImg.scrollHeight
+                const modalDialogHeight = modalDialog.offsetHeight;
+
+                let ratioY = (imageHeight - modalDialogHeight) / modalDialogHeight;
+                let y = (pY - modalDialog.offsetTop) * ratioY;
+                console.log(modalDialogHeight)
+
+                modalContent.style = `top: ${-(y - 175)}px;`
+            } else {
+                return
+            }
+        })
 
         btnListView.addEventListener("click", function (e) {
 
@@ -779,35 +881,35 @@
 
         const imgItems = document.querySelectorAll(".img-item")
         const imgMain = document.querySelector(".img-main-wrapper img")
-        const imgMainCover = document.querySelector(".img-main-cover")
-        const imgMainWrapper = document.querySelector(".img-main-wrapper")
+        // const imgMainCover = document.querySelector(".img-main-cover")
+        // const imgMainWrapper = document.querySelector(".img-main-wrapper")
         const itemName = document.querySelector(".detail-name")
 
-        imgMainCover.addEventListener("mousemove", handlerHover)
-        let imageWrapperWidth = imgMainWrapper.offsetWidth
-        let imageWrapperHeight = imgMainWrapper.offsetHeight
+        // imgMainCover.addEventListener("mousemove", handlerHover)
+        // let imageWrapperWidth = imgMainWrapper.offsetWidth
+        // let imageWrapperHeight = imgMainWrapper.offsetHeight
 
-        function handlerHover(e) {
-            const pX = e.pageX;
-            const pY = e.pageY;
-            imgMain.style = "width:auto; height:auto; max-height: unset;"
-            let imageWidth = imgMain.offsetWidth
-            let imageHeight = imgMain.offsetHeight
+        // function handlerHover(e) {
+        //     const pX = e.pageX;
+        //     const pY = e.pageY;
+        //     imgMain.style = "width:auto; height:auto; max-height: unset;"
+        //     let imageWidth = imgMain.offsetWidth
+        //     let imageHeight = imgMain.offsetHeight
 
-            let ratioX = (imageWidth - imageWrapperWidth) / imageWrapperWidth;
-            let ratioY = (imageHeight - imageWrapperHeight) / imageWrapperHeight;
+        //     let ratioX = (imageWidth - imageWrapperWidth) / imageWrapperWidth;
+        //     let ratioY = (imageHeight - imageWrapperHeight) / imageWrapperHeight;
 
-            let x = (pX - imgMainWrapper.offsetLeft) * ratioX;
-            let y = (pY - imgMainWrapper.offsetTop) * ratioY;
+        //     let x = (pX - imgMainWrapper.offsetLeft) * ratioX;
+        //     let y = (pY - imgMainWrapper.offsetTop) * ratioY;
 
-            // console.log(x , y)
-            imgMain.style = `left: ${-x}px; top: ${-y}px; width: auto; height: auto; max-height: unset`
+        //     // console.log(x , y)
+        //     imgMain.style = `left: ${-x}px; top: ${-y}px; width: auto; height: auto; max-height: unset`
 
-        }
+        // }
 
-        imgMainCover.addEventListener("mouseleave", function (e) {
-            imgMain.style = ""
-        })
+        // imgMainCover.addEventListener("mouseleave", function (e) {
+        //     imgMain.style = ""
+        // })
 
         imgItems.forEach((e) => e.addEventListener("click", function (e) {
             e.preventDefault()
@@ -824,12 +926,21 @@
             const color = event.currentTarget.dataset.color
             const name = event.currentTarget.dataset.name
             itemName.textContent = `ÁO SƠ MI LINEN GÂN THÊU FORM LOOSE SM135 MÀU ${name}`
+            imgMain.setAttribute("src", `./assets/images/product/somi-ligen/${color}/somi-ligen-${color}-1.jpg`)
+            modalImg.setAttribute("src", `./assets/images/product/somi-ligen/${color}/somi-ligen-${color}-1.jpg`)
+
             for (let i = 0; i < imgItems.length; i++) {
                 const img = imgItems[i].querySelector("img")
-                imgMain.setAttribute("src", `./assets/images/product/somi-ligen/${color}/somi-ligen-${color}-1.jpg`)
                 img.setAttribute("src", `./assets/images/product/somi-ligen/${color}/somi-ligen-${color}-${i + 1}.jpg`)
             }
+
+            for (let i = 0; i < imageList.length; i++) {
+                imageList[i].setAttribute("src", `./assets/images/product/somi-ligen/${color}/somi-ligen-${color}-${i + 1}.jpg`)
+            }
         }))
+    </script>
+    <script>
+
     </script>
 </body>
 

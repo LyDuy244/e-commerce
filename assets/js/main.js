@@ -141,7 +141,7 @@ orderBtn && orderBtn.addEventListener("click", function (e) {
         topCartList.innerHTML = "";
         productList.forEach(item => createProductItemInCart(item))
     } else {
-        const productImg = product.parentElement.querySelector(".img-main-wrapper img").getAttribute("src");
+        const productImg = product.previousElementSibling.querySelectorAll(".img-main-wrapper img")[1].getAttribute("src");
         const productPrice = product.querySelector(".detail-price").innerText
 
         const price = productPrice.split("");

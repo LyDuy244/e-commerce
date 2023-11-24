@@ -310,6 +310,13 @@
       }
     }
   }
+
+  .base-btn{
+    width: 100%;
+    text-align: center;
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 .nav-mobile {
@@ -684,10 +691,6 @@
 
       .img-main-wrapper {
         height: 70rem;
-      }
-
-      .img-main-cover {
-        display: none;
       }
     }
 

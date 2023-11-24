@@ -4,16 +4,16 @@
   align-items: start;
   gap: 3rem;
 
-  &-wrapper{
-    .product-list{
-        margin-bottom: 3rem;
+  &-wrapper {
+    .product-list {
+      margin-bottom: 3rem;
     }
   }
 }
 
 .detail {
   &-content {
-    width: 40%;
+    width: 45%;
   }
 
   &-name {
@@ -21,7 +21,7 @@
     font-weight: bold;
   }
 
-  &-price{
+  &-price {
     margin-bottom: 1rem;
     font-size: 1.8rem;
     color: #4a4a4b;
@@ -42,14 +42,15 @@
   }
 
   &-image {
-    width: 60%;
+    width: 55%;
     overflow: hidden;
     display: flex;
-    gap: 1rem;
+    justify-content: space-between;
     .img-list {
-      width: 15%;
+      width: 18%;
       height: 60rem;
       overflow-y: scroll;
+      justify-content: space-between;
 
       &::-webkit-scrollbar-track {
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -76,33 +77,22 @@
     }
 
     .img-main {
-      &-list{
-        width: calc(100% - 15%);
+      &-list {
+        width: calc(100% - 20%);
       }
       &-wrapper {
         flex: 1;
         position: relative;
         overflow: hidden;
-        height: 600px;
+        height: 60rem;
         background-color: #f7f7f7;
         & > img {
-          object-fit: cover;
           max-height: 100%;
           cursor: zoom-in;
           max-width: unset;
           width: 100%;
           height: auto;
           position: relative;
-        }
-
-        .img-main-cover {
-          cursor: zoom-in;
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          top: 0;
-          left: 0;
-          z-index: 1;
         }
       }
     }
@@ -288,4 +278,54 @@
   }
 }
 
+.modal {
+  & i {
+    color: white;
+    font-size: 60px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 
+  &-prev{
+    left: 25rem;
+  }
+
+  &-next{
+    right: 25rem;
+  }
+
+  &-dialog {
+    margin: 0 auto;
+    max-width: 80rem !important;
+    max-height: 100vh;
+    overflow: hidden;
+  }
+
+  &-content {
+    margin: 0 auto;
+    width: 47rem;
+    border-radius: 4px;
+    height: auto;
+
+    &.zoom-in {
+      width: 80rem;
+      top: 175px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-position: top;
+      cursor: zoom-in;
+
+      &.zoom-in {
+        width: auto;
+        object-position: top;
+        height: auto;
+        cursor: zoom-out;
+      }
+    }
+  }
+}
